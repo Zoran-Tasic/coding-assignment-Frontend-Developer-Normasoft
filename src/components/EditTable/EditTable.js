@@ -23,11 +23,11 @@ const EditTable = ({posts, deletePost}) => {
                                         <th>Brief contents</th>
                                         <th>Action</th> 
                                         <th>Action</th> 
-                                    </tr> 
-                                </thead> 
+                                    </tr>
                                 <tbody> 
                                     {allPosts} 
                                 </tbody> 
+                                </thead> 
                             </table> 
                         </div> 
                     </div> 

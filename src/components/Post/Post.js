@@ -1,8 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-
-const Post = ({post, edit, deletePost}) => {
+const Post = ({post, edit, deletePost, handleShow}) => {
     const actionButtons = edit ? ( 
         <>
             <td> 
@@ -13,16 +12,34 @@ const Post = ({post, edit, deletePost}) => {
             </td> 
         </>
         ) : null;
-    return ( 
-        <tr>
-            <td> {post.id} </td> 
-            <td> {post.title} </td> 
-            <td> {post.postDate} </td> 
-            <td> {post.creatorUser} </td> 
-            <td> {post.postTags} </td> 
-            <td> {post.content} </td>   
-            {actionButtons} 
-        </tr>
+    return (
+    <> 
+        <div className="card mt-3">
+            <div className="card-header">
+                <h3>{post.title}</h3>
+            </div>
+            <div className="card-body">
+                <div className="row ">
+                    <div className="col-6">
+                        {post.postDate}
+                    </div>
+                    <div className="col-6">
+                        {post.creatorUser}
+                    </div>
+                </div>
+                <div className="row ">
+                    <p className="pl-4 pr-3">Tags: </p>{post.postTags}
+                </div>
+                <div className="row ">
+                    <p>{post.content.substr(0,100)} ...</p>
+                </div>
+            </div> 
+            <div className="card-footer">
+                {actionButtons}
+                <button className="btn btn-info float-right" onClick={()=>{handleShow(post)}}>details</button>    
+            </div>           
+        </div>
+    </>
     )
 }
 
