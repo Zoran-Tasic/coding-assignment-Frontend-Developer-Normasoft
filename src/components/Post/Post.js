@@ -5,13 +5,14 @@ const Post = ({post, edit, deletePost, handleShow}) => {
     const actionButtons = edit ? ( 
         <>
             <td> 
-                <button onClick = {() => {deletePost(post.id)}} className = "btn btn-danger">Delete</button>
+                <button onClick = {() => {deletePost(post.id)}} className="btn btn-danger">Delete</button>
             </td>
             <td> 
-                <Link to = {"/edit/" + post.id} className = "btn btn-warning">Edit</Link> 
+                <Link to = {post.id + "/edit/"} className="btn btn-warning ml-2">Edit</Link> 
             </td> 
         </>
-        ) : null;
+        ) : 
+        <button className="btn btn-info float-right" onClick={()=>{handleShow(post)}}>details</button> ;
     return (
     <> 
         <div className="card mt-3">
@@ -36,7 +37,6 @@ const Post = ({post, edit, deletePost, handleShow}) => {
             </div> 
             <div className="card-footer">
                 {actionButtons}
-                <button className="btn btn-info float-right" onClick={()=>{handleShow(post)}}>details</button>    
             </div>           
         </div>
     </>

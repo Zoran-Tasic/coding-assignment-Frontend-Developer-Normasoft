@@ -10,7 +10,8 @@ class EditPost extends Component {
             postDate: "",
             creatorUser: "",
             postTags: "",
-            content: ""
+            content: "",
+            comments: []
         }
     }
 
@@ -32,18 +33,18 @@ class EditPost extends Component {
 
     render() {
         return ( 
-            <div className = "container">
-                <div className = "row">
-                    <div className = "col-10 offset-1">
-                        <h2 className = "display-4 m-4">Edit Post</h2> 
-                        <div className = "row">
-                            <div className = "col-10 offset-1">
-                                <input onChange = {this.changePost} type = "text" id = "title" className = "form-control" value = {this.state.post.title}/> <br/>
-                                <input onChange = {this.changePost} type = "text" id = "postDate" className = "form-control" value = {this.state.post.postDate}/> <br/>
-                                <input onChange = {this.changePost} type = "text" id = "creatorUser" className = "form-control" value = {this.state.post.creatorUser}/> <br/>
-                                <input onChange = {this.changePost} type = "text" id = "postTags" className = "form-control" value = {this.state.post.postTags}/> <br/>
-                                <input onChange = {this.changePost} type = "text" id = "content" className = "form-control" value = {this.state.post.content}/> <br/>
-                                <button onClick = {this.editPost} className = "form-control btn btn-info">Edit</button> 
+            <div className="container">
+                <div className="row">
+                    <div className="col-10 offset-1">
+                        <h2 className="display-4 m-4">Edit Post</h2> 
+                        <div className="row">
+                            <div className="col-10 offset-1">
+                                <input onChange={this.changePost} type="text" id="title" className="form-control" value={this.state.post.title}/> <br/>
+                                <input onChange={this.changePost} type="text" id="postDate" className="form-control" value={this.state.post.postDate}/> <br/>
+                                <input onChange={this.changePost} type="text" id="creatorUser" className="form-control" value={this.state.post.creatorUser}/> <br/>
+                                <input onChange={this.changePost} type="text" id="postTags" className="form-control" value={this.state.post.postTags}/> <br/>
+                                <input onChange={this.changePost} type="text" id="content" className="form-control" value={this.state.post.content}/> <br/>
+                                <button onClick={this.editPost} className="form-control btn btn-info">Edit</button> 
                             </div> 
                         </div> 
                     </div> 
