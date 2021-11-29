@@ -1,0 +1,62 @@
+import React, {Component} from 'react';//@ts-ignore
+import {withRouter} from "react-router-dom";
+
+class EditPost extends Component {
+
+    state = {
+        post: {
+            id: "",
+            title: "",
+            postDate: "",
+            creatorUser: "",
+            postTags: "",
+            content: "",
+            comments: []
+        }
+    }
+
+    componentDidMount() {//@ts-ignore
+        const postForEdit = this.props.posts.filter(p => p.id == this.props.match.params.id)[0];
+        this.setState({post: postForEdit})
+    }
+
+    changePost = (event:any) => {
+        const copyOfPost = {...this.state.post};//@ts-ignore
+        copyOfPost[event.target.id] = event.target.value;
+        this.setState({post: copyOfPost});
+    }
+
+    editPost = () => {//@ts-ignore
+        this.props.editPost(this.state.post);//@ts-ignore
+        this.props.history.push("/");
+    }
+
+    render() {
+        return ( 
+            <div className="container">
+                <div className="row">
+                    <div className="col-10 offset-1">
+                        <h2 className="display-4 m-4">Edit Post</h2> 
+                        <div className="row">
+                            <div className="col-10 offset-1">
+                                <input onChange={this.changePost} type="text" 
+                                    id="title" className="form-control" value={this.state.post.title}/> <br/>
+                                <input onChange={this.changePost} type="date" 
+                                    id="postDate" className="form-control" value={this.state.post.postDate}/> <br/>
+                                <input onChange={this.changePost} type="text" 
+                                    id="creatorUser" className="form-control" value={this.state.post.creatorUser}/> <br/>
+                                <input onChange={this.changePost} type="text" 
+                                    id="postTags" className="form-control" value={this.state.post.postTags}/> <br/>
+                                <textarea onChange={this.changePost}
+                                    rows={parseInt("4")} id="content" className="form-control" value={this.state.post.content}/> <br/>
+                                <button onClick={this.editPost} className="form-control btn btn-info">Edit</button> 
+                            </div> 
+                        </div> 
+                    </div> 
+                </div> 
+            </div>
+        )
+    }
+}
+
+export default withRouter(EditPost);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react';//@ts-ignore
 import {Link, NavLink} from "react-router-dom";
 import "./Header.css";
 

@@ -7,44 +7,43 @@ class ModalDialog extends Component {
     state = {
         newComment: "" 
     }
-
-    changePost = (event) => {
+    
+    changePost = (event:any) => {
         this.setState({newComment: event.target.value});
     }
 
-    addComment = () => {
+    addComment = () => {//@ts-ignore
         this.props.addNewComment(this.state.newComment, this.props.post);
         this.setState({newComment: ""})
     }
 
     render(){
-        console.log(this.state.newComment)
-        let allComments=''
-        if(this.props.post.comments!=undefined){
-            allComments=this.props.post.comments.map(comment => { 
+        let allComments=''//@ts-ignore
+        if(this.props.post.comments!=undefined){//@ts-ignore
+            allComments=this.props.post.comments.map((comment:string) => { 
                 return (
                     <li>{comment}</li>
                 )}
             )
         }
-        return (
+        return (//@ts-ignore
             <Modal show={this.props.show} onHide={this.props.handleClose}>
-                <Modal.Header>
+                <Modal.Header>{/*//@ts-ignore*/}
                     <Modal.Title>{this.props.post.title}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div className="row ">
-                        <div className="col-6">
+                        <div className="col-6">{/*//@ts-ignore*/}
                             {this.props.post.postDate}
                         </div>
-                        <div className="col-6">
+                        <div className="col-6">{/*//@ts-ignore*/}
                             {this.props.post.creatorUser}
                         </div>
                     </div>
-                    <div className="row ">
+                    <div className="row ">{/*//@ts-ignore*/}
                         <p className="pl-4 pr-3">Tags: </p>{this.props.post.postTags}
                     </div>
-                    <div className="row ">
+                    <div className="row ">{/*//@ts-ignore*/}
                         <p className="pl-3 pr-3 text-justify">{this.props.post.content}</p>
                     </div>
                     <div className="row ">
@@ -56,7 +55,7 @@ class ModalDialog extends Component {
                         <button onClick={this.addComment} className="btn btn-primary">Add comment</button>  
                     </div>
                 </Modal.Body>
-                <Modal.Footer>
+                <Modal.Footer>{/*//@ts-ignore*/}
                     <Button variant="secondary" onClick={this.props.handleClose}>Close</Button>
                 </Modal.Footer>
             </Modal>

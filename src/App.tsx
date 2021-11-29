@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Header from "./components/Header/Header";
+import Header from "./components/Header/Header";//@ts-ignore
 import {Route, BrowserRouter, Switch} from "react-router-dom";
 import PostsTable from "./components/PostsTable/PostsTable";
 import CreatePost from "./components/CreatePost/CreatePost";
@@ -7,6 +7,7 @@ import EditTable from "./components/EditTable/EditTable";
 import EditPost from "./components/EditPost/EditPost";
 import ModalDialog from "./components/Modal";
 import data from "./dataBase";
+import Data from "./models/Data"
 
 class App extends Component {
     //Problem with loading Dummy API data
@@ -32,22 +33,22 @@ class App extends Component {
         //})
     }
 
-    addNewPostToState = (post) => {
+    addNewPostToState = (post:Data[]) => {
         this.setState({
             posts: [...this.state.posts, post]
         })
     }
 
-    deletePost = (id) => {
-        const postsCopy = [...this.state.posts];
+    deletePost = (id:string) => {
+        const postsCopy = [...this.state.posts];//@ts-ignore
         const newCopyPosts = postsCopy.filter(post => post.id !== id);
         this.setState({posts: newCopyPosts});
 
     }
 
-    editPost = (p) => {
-        const copyPosts = [...this.state.posts];
-        let postPossition = copyPosts.map(post => post.id).indexOf(p.id)
+    editPost = (p:Data) => {
+        const copyPosts = [...this.state.posts];//@ts-ignore
+        let postPossition = copyPosts.map(post => post.id).indexOf(p.id)//@ts-ignore
         copyPosts[postPossition] = p;
         this.setState({posts: copyPosts})
     }
@@ -56,16 +57,16 @@ class App extends Component {
         this.setState({show: false})
     }
 
-    handleShow = async (post) => {
+    handleShow = async (post:Data) => {
         await this.setState({activePost: post})
         this.setState({show: true})
     }
 
-    addNewComment = (comment, p) => {
-        let newCommentToPost=p
+    addNewComment = (comment:string, p:Data) => {
+        let newCommentToPost:Data=p
         newCommentToPost.comments.push(comment);
         const copyPosts=[...this.state.posts];
-        let postWithNewComment=copyPosts.map(post => post.id).indexOf(newCommentToPost.id)
+        let postWithNewComment=copyPosts.map((post:Data) => post.id).indexOf(newCommentToPost.id)//@ts-ignore
         copyPosts[postWithNewComment]=newCommentToPost;
         this.setState({posts: copyPosts})
     }
@@ -76,7 +77,11 @@ class App extends Component {
                 <Header/>
                 <Route path = "/" exact>
                     <PostsTable posts={this.state.posts} handleShow={this.handleShow}/>
-                    <ModalDialog post={this.state.activePost} show={this.state.show} handleClose={this.handleClose} addNewComment={this.addNewComment}/>
+                    <ModalDialog //@ts-ignore 
+                        post={this.state.activePost} 
+                        show={this.state.show} 
+                        handleClose={this.handleClose} 
+                        addNewComment={this.addNewComment}/>
                 </Route>
                 <Route path = "/create">
                     <CreatePost addNewPostToState={this.addNewPostToState}/> 

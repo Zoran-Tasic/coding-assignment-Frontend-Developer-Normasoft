@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react';//@ts-ignore
 import {withRouter} from "react-router-dom";
 
 class CreatePost extends Component {
@@ -14,15 +14,15 @@ class CreatePost extends Component {
         }
     }
 
-    changeHandler = (event) => {
+    changeHandler = (event:any) => {
         let id=event.target.id;
-        let newPostCopy={...this.state.newPost};
+        let newPostCopy={...this.state.newPost};//@ts-ignore
         newPostCopy[id]=event.target.value;
         this.setState({newPost: newPostCopy});
     }
 
-    addNewPost = () => {
-        this.props.addNewPostToState(this.state.newPost);
+    addNewPost = () => {//@ts-ignore
+        this.props.addNewPostToState(this.state.newPost);//@ts-ignore
         this.props.history.push("/");
     }
 
@@ -59,7 +59,8 @@ class CreatePost extends Component {
                                     id="postTags" placeholder="post tags"
                                     className="form-control"/> 
                                 <br/>
-                                <textarea row="4"
+                                <textarea 
+                                    rows={parseInt("4")}
                                     onChange={this.changeHandler}
                                     id="content" placeholder="content"
                                     className="form-control"/> 

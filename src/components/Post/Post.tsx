@@ -1,6 +1,7 @@
-import React from 'react';
+import React from 'react';//@ts-ignore
 import {Link} from 'react-router-dom';
 
+//@ts-ignore
 const Post = ({post, edit, deletePost, handleShow}) => {
     const actionButtons = edit ? ( 
         <>
