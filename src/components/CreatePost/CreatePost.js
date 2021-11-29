@@ -45,7 +45,7 @@ class CreatePost extends Component {
                                     id="title" placeholder="title"
                                     className="form-control"/> 
                                 <br/>
-                                <input type="text"
+                                <input type="date"
                                     onChange={this.changeHandler}
                                     id="postDate" placeholder="post date"
                                     className="form-control"/> 
@@ -59,7 +59,7 @@ class CreatePost extends Component {
                                     id="postTags" placeholder="post tags"
                                     className="form-control"/> 
                                 <br/>
-                                <input type="text"
+                                <textarea row="4"
                                     onChange={this.changeHandler}
                                     id="content" placeholder="content"
                                     className="form-control"/> 
